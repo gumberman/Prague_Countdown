@@ -32,6 +32,15 @@ function updateCountdown() {
         document.getElementById('minutes').textContent = '0';
         document.getElementById('seconds').textContent = '0';
         document.getElementById('message').textContent = '🎉 Time to visit Prague! 🎉';
+
+        // Change text to Hebrew "Enjoy!"
+        const targetDateDisplay = document.querySelector('.target-date-display p');
+        if (targetDateDisplay) {
+            targetDateDisplay.textContent = 'תהנו!';
+        }
+
+        // Position airplane at beer glass
+        updateAirplanePosition(0);
         return;
     }
 
@@ -67,6 +76,43 @@ function updateCountdown() {
     } else {
         document.getElementById('message').textContent = '';
     }
+
+    // Update airplane position based on time remaining
+    updateAirplanePosition(distance);
+}
+
+// ===== AIRPLANE JOURNEY ANIMATION =====
+function updateAirplanePosition(distance) {
+    const airplane = document.getElementById('airplane');
+    if (!airplane) return;
+
+    // Convert distance to total seconds remaining
+    const totalSecondsRemaining = Math.max(0, distance / 1000);
+
+    // Maximum is 30 days (in seconds)
+    const maxSeconds = 30 * 24 * 60 * 60;
+
+    // Calculate progress (0 = at start, 1 = at destination)
+    let progress = 1 - (totalSecondsRemaining / maxSeconds);
+    progress = Math.max(0, Math.min(1, progress)); // Clamp between 0 and 1
+
+    // Calculate position along arc
+    // Start at 10% from left, end at 90% (where beer is)
+    const startX = 10;
+    const endX = 90;
+    const xPosition = startX + (endX - startX) * progress;
+
+    // Create arc: highest at middle of journey
+    // Arc height: 60px at peak (middle of journey)
+    const arcHeight = 60;
+    const yPosition = -Math.sin(progress * Math.PI) * arcHeight;
+
+    airplane.style.left = xPosition + '%';
+    airplane.style.top = `calc(50% + ${yPosition}px)`;
+
+    // Rotate airplane slightly based on arc slope
+    const rotation = Math.cos(progress * Math.PI) * 15;
+    airplane.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
 }
 
 // ===== CURSOR GLOW EFFECT =====

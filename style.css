@@ -66,6 +66,14 @@ body::before {
     animation: bounce 2s infinite;
 }
 
+.before-text {
+    font-size: 2em;
+    color: #ffd700;
+    font-weight: 600;
+    margin: 20px 0 10px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
 @keyframes bounce {
     0%, 100% {
         transform: translateY(0);
@@ -153,28 +161,29 @@ body::before {
     text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
-.decorations {
+.journey-animation {
+    position: relative;
+    height: 120px;
+    margin-top: 40px;
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    font-size: 2em;
 }
 
-.icon {
-    animation: float 3s ease-in-out infinite;
+.airplane {
+    position: absolute;
+    font-size: 3em;
+    transition: left 1s ease-out, top 1s ease-out;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    z-index: 10;
 }
 
-.icon:nth-child(2) {
-    animation-delay: 0.5s;
-}
-
-.icon:nth-child(3) {
-    animation-delay: 1s;
-}
-
-.icon:nth-child(4) {
-    animation-delay: 1.5s;
+.beer-destination {
+    position: absolute;
+    right: 10%;
+    font-size: 3em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    animation: float 2s ease-in-out infinite;
 }
 
 @keyframes float {
@@ -259,6 +268,11 @@ body::before {
         font-size: 1.8em;
     }
 
+    .before-text {
+        font-size: 1.5em;
+        margin: 15px 0 5px 0;
+    }
+
     .countdown {
         padding: 20px 10px;
         gap: 5px;
@@ -292,9 +306,26 @@ body::before {
     .container {
         padding: 30px 15px;
     }
+
+    .journey-animation {
+        height: 100px;
+        margin-top: 30px;
+    }
+
+    .airplane {
+        font-size: 2.5em;
+    }
+
+    .beer-destination {
+        font-size: 2.5em;
+    }
 }
 
 @media (max-width: 480px) {
+    .before-text {
+        font-size: 1.3em;
+    }
+
     .countdown {
         padding: 15px 8px;
         gap: 3px;
@@ -311,5 +342,17 @@ body::before {
     .time-box:not(:last-child)::after {
         font-size: 1.3em;
         right: -5px;
+    }
+
+    .journey-animation {
+        height: 80px;
+    }
+
+    .airplane {
+        font-size: 2em;
+    }
+
+    .beer-destination {
+        font-size: 2em;
     }
 }
