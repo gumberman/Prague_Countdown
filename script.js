@@ -91,7 +91,8 @@ function createPathDots() {
     const numDots = 30; // Number of dots along the path
     pathDots = [];
 
-    for (let i = 0; i <= numDots; i++) {
+    // Create dots but skip the last one (i < numDots instead of i <= numDots)
+    for (let i = 0; i < numDots; i++) {
         const dot = document.createElement('div');
         dot.className = 'path-dot not-traveled';
 
