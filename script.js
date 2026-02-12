@@ -82,6 +82,38 @@ function updateCountdown() {
 }
 
 // ===== AIRPLANE JOURNEY ANIMATION =====
+let pathDots = [];
+
+function createPathDots() {
+    const pathDotsContainer = document.getElementById('pathDots');
+    if (!pathDotsContainer) return;
+
+    const numDots = 30; // Number of dots along the path
+    pathDots = [];
+
+    for (let i = 0; i <= numDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'path-dot not-traveled';
+
+        const progress = i / numDots;
+
+        // Calculate position along arc (same formula as airplane)
+        const startX = 10;
+        const endX = 90;
+        const xPosition = startX + (endX - startX) * progress;
+
+        const arcHeight = 60;
+        const yPosition = -Math.sin(progress * Math.PI) * arcHeight;
+
+        dot.style.left = xPosition + '%';
+        dot.style.top = `calc(50% + ${yPosition}px)`;
+        dot.style.transform = 'translate(-50%, -50%)';
+
+        pathDotsContainer.appendChild(dot);
+        pathDots.push({ element: dot, progress: progress });
+    }
+}
+
 function updateAirplanePosition(distance) {
     const airplane = document.getElementById('airplane');
     if (!airplane) return;
@@ -113,6 +145,15 @@ function updateAirplanePosition(distance) {
     // Rotate airplane slightly based on arc slope
     const rotation = Math.cos(progress * Math.PI) * 15;
     airplane.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+    // Update dot colors based on airplane position
+    pathDots.forEach(dot => {
+        if (dot.progress <= progress) {
+            dot.element.className = 'path-dot traveled';
+        } else {
+            dot.element.className = 'path-dot not-traveled';
+        }
+    });
 }
 
 // ===== CURSOR GLOW EFFECT =====
@@ -209,6 +250,7 @@ function initParticles() {
 document.addEventListener('DOMContentLoaded', () => {
     initCursorGlow();
     initParticles();
+    createPathDots();
 });
 
 // Update countdown every second

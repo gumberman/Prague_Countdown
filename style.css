@@ -170,6 +170,42 @@ body::before {
     justify-content: center;
 }
 
+.israel-flag {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5em;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    z-index: 5;
+}
+
+.path-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.path-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transition: background-color 0.5s ease;
+}
+
+.path-dot.traveled {
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.path-dot.not-traveled {
+    background-color: rgba(100, 100, 100, 0.6);
+}
+
 .airplane {
     position: absolute;
     font-size: 3em;
@@ -184,6 +220,7 @@ body::before {
     font-size: 3em;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
     animation: float 2s ease-in-out infinite;
+    z-index: 5;
 }
 
 @keyframes float {
@@ -312,6 +349,15 @@ body::before {
         margin-top: 30px;
     }
 
+    .israel-flag {
+        font-size: 2em;
+    }
+
+    .path-dot {
+        width: 6px;
+        height: 6px;
+    }
+
     .airplane {
         font-size: 2.5em;
     }
@@ -346,6 +392,15 @@ body::before {
 
     .journey-animation {
         height: 80px;
+    }
+
+    .israel-flag {
+        font-size: 1.5em;
+    }
+
+    .path-dot {
+        width: 5px;
+        height: 5px;
     }
 
     .airplane {
