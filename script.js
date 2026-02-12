@@ -1,33 +1,6 @@
-// Default countdown date - set to 30 days from now
-let targetDate = new Date();
-targetDate.setDate(targetDate.getDate() + 30);
-
-// Load saved date from localStorage if available
-const savedDate = localStorage.getItem('pragueCountdownDate');
-if (savedDate) {
-    targetDate = new Date(savedDate);
-}
-
-// Set the input field to the current target date
-document.getElementById('target-date').value = formatDateForInput(targetDate);
-
-function formatDateForInput(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    const hours = String(date.getHours()).padStart(2, '0');
-    const minutes = String(date.getMinutes()).padStart(2, '0');
-    return `${year}-${month}-${day}T${hours}:${minutes}`;
-}
-
-function setCountdown() {
-    const inputDate = document.getElementById('target-date').value;
-    if (inputDate) {
-        targetDate = new Date(inputDate);
-        localStorage.setItem('pragueCountdownDate', targetDate.toISOString());
-        updateCountdown();
-    }
-}
+// Fixed countdown date: March 5th, 2026 at 9:55 AM Israel Time (UTC+2)
+// Using ISO 8601 format with timezone offset
+const targetDate = new Date('2026-03-05T09:55:00+02:00');
 
 function updateCountdown() {
     const now = new Date().getTime();
