@@ -87,7 +87,7 @@ body::before {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .time-box {
@@ -260,24 +260,56 @@ body::before {
     }
 
     .countdown {
-        padding: 25px 15px;
-        gap: 10px;
+        padding: 20px 10px;
+        gap: 5px;
+        flex-wrap: nowrap;
+        overflow-x: hidden;
+    }
+
+    .time-box {
+        min-width: 0;
+        flex-shrink: 1;
     }
 
     .time-value {
-        font-size: 2.2em;
+        font-size: 1.8em;
     }
 
     .time-label {
-        font-size: 0.75em;
+        font-size: 0.6em;
+        letter-spacing: 0.5px;
     }
 
     .time-box:not(:last-child)::after {
-        font-size: 2em;
-        right: -8px;
+        font-size: 1.5em;
+        right: -6px;
     }
 
     .target-date-display p {
-        font-size: 1.1em;
+        font-size: 1em;
+    }
+
+    .container {
+        padding: 30px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown {
+        padding: 15px 8px;
+        gap: 3px;
+    }
+
+    .time-value {
+        font-size: 1.5em;
+    }
+
+    .time-label {
+        font-size: 0.55em;
+    }
+
+    .time-box:not(:last-child)::after {
+        font-size: 1.3em;
+        right: -5px;
     }
 }
