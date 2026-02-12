@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prague Countdown</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>✨ Countdown to Prague ✨</h1>
+            <div class="prague-icon">🏰</div>
+        </div>
+
+        <div class="countdown">
+            <div class="time-box">
+                <div class="time-value" id="days">0</div>
+                <div class="time-label">Days</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="hours">0</div>
+                <div class="time-label">Hours</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="minutes">0</div>
+                <div class="time-label">Minutes</div>
+            </div>
+            <div class="time-box">
+                <div class="time-value" id="seconds">0</div>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+
+        <div class="date-input">
+            <label for="target-date">Set your date:</label>
+            <input type="datetime-local" id="target-date">
+            <button onclick="setCountdown()">Update Countdown</button>
+        </div>
+
+        <div class="message" id="message"></div>
+
+        <div class="decorations">
+            <div class="icon">🌉</div>
+            <div class="icon">🍺</div>
+            <div class="icon">🎭</div>
+            <div class="icon">🎨</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
